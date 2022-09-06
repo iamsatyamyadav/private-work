@@ -343,3 +343,345 @@ if (process.env.USER === "") {
    process.exit(0);
  });
 }
+
+
+/*Summer internship Ended
+Description
+
+You want to apply for internships for the upcoming summer but for that you need show some experience in your resume.
+
+So for that you decided to do a startup. This startup is about selling muffins.
+
+You sell muffins at 5$ a piece, and people are loving your muffins and are standing in a long queue to purchase it.
+
+Every customer purchases a single muffin and pays you in either5$,10$or20$bills, your task now is to find out if you are able to provide change to everybody in the queue.
+
+If you can provide change to everyone they will be happy and give you a good referral.
+
+Initially you have no money i.e. no bills of any kind.
+
+Output YES if you can provide change to everyone, else NO.
+
+
+Input
+Input Format
+The first line of the input gives the number of test cases, T. T test cases follow. Each test case consists of two lines.
+
+The first line of each test case contains an integer n, representing the number of people in a queue.
+
+The second line of each test case contains n space separated integer, the ith (1<=i<=n) of which denotes the kind of bill the ith person gives you.
+
+Constraints
+1 ≤ t ≤ 10
+
+1 ≤ n ≤ 10^5
+
+bills[i] is either 5,10 or 20
+
+
+Output
+Output Format
+For each testcase output YES if you can provide change to everyone, else NO.
+
+
+Sample Input 1 
+
+2
+5
+5 5 5 10 20
+5
+5 5 10 10 20
+Sample Output 1
+
+YES
+NO
+Hint
+
+First testcase
+From the first 3 customers, we collect three5$bills in order.From the fourth customer, we collect a10$bill and give back a5$.From the fifth customer, we give a10$bill and a5$bill.Since all customers got correct change, we output YES.
+
+Second testcase
+From the first two customers in order, we collect two5$bills.For the next two customers in order, we collect a10$bill and give back a5$bill.For the last customer, we can not give the change of15$back because we only have two10$bills.Since not every customer received the correct change, the answer is NO. */
+
+function  Summerinternship(n,arr){
+
+  let n5=0;
+  let n10=0;
+  let n20=0;
+  for(let i=0;i<n;i++)
+  {
+      switch(arr[i])
+      {
+          case 5:
+              n5++;
+              break;
+          case 10:
+              n10++;
+              break;
+          case 20:
+              n20++;
+              break;
+      }
+  }
+  
+  
+  for(let i=0;i<n;i++)
+  {
+      if(arr[i]==10)
+      {
+          if(n5==0)
+          {
+              console.log("NO");
+              return;
+          }
+          else
+          {
+              n5--;
+          }
+      }
+      else if(arr[i]==20)
+      {
+          if(n5==0 || n10==0)
+          {
+              console.log("NO");
+              return;
+          }
+          else
+          {
+              n5--;
+              n10--;
+          }
+      }
+  }
+  console.log("YES");
+}
+
+
+function runProgram(input) {
+ input = input.trim().split("\n")
+ 
+ let T = +input[0]
+ let p = 1;
+ 
+ for(let i = 0; i<T; i++)
+ {
+     let n = +input[p++];
+     let arr = input[p++].split(" ").map(Number)
+     
+     Summerinternship(n,arr)
+ }
+}
+if (process.env.USER === "") {
+runProgram(``);
+} else {
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+let read = "";
+process.stdin.on("data", function (input) {
+  read += input;
+});
+process.stdin.on("end", function () {
+  read = read.replace(/\n$/, "");
+  read = read.replace(/\n$/, "");
+  runProgram(read);
+});
+process.on("SIGINT", function () {
+  read = read.replace(/\n$/, "");
+  runProgram(read);
+  process.exit(0);
+});
+}
+
+
+
+/*Push, Pop and Top Ended
+Description
+
+There is a stack of integers which is currently empty. You are given an integer n and there are n operations that you need to perform on the stack.
+
+The next n line contains one of the following 3 operations:
+
+1 x : Push x to the top of the stack.
+
+2 : Pop an element from the top of the stack. If the stack is empty, do nothing.
+
+3 : Print the top element of the stack (if stack is empty, print "Empty!" (without quotes)).
+
+For better understanding, read sample test case explanation
+
+
+Input
+Input Format:
+
+First line of test case contains n.
+
+In the next n lines there can be one of the following three possible inputs:
+
+1 separated by an integer: In that case, you have to push that integer to stack
+
+2 : Pop an element from the top of the stack. If the stack is empty, do nothing.
+
+3 : Print the top element of the stack (see Output Format).
+
+Constraints :
+
+N<1000
+
+
+Output
+Whenever the query (out of the n queries) is 3, print top element of stack.
+
+
+Sample Input 1 
+
+6
+1 15
+1 20
+2
+3
+2
+3
+Sample Output 1
+
+15
+Empty!
+Hint
+
+Sample Test Case Explanation :
+
+There are 6 different operations to be performed on the stack.
+
+In first operation, we are pushing 15 to the stack
+
+In second operation, we are pushing 20 to the stack
+
+In third operation, we are popping (removing) 20 from the stack.
+
+In fourth operation, we have to print the top element and since stack is not empty and has 15 at the top. Print 15.
+
+In fifth operation, we are popping the top element from the stack and since there is just one element present in the stack, the stack will become empty after performing this operation.
+
+In sixth operation, you have to print the top element and since the stack is already empty, output "Empty!" */
+
+
+// function  PushPopTop(n,v){
+//     console.log(n,v)
+// let stack = []
+// let top = -1;
+// let size = 5;
+
+
+
+// }
+
+
+
+function runProgram(input) {
+  input = input.trim().split("\n");
+  
+  let T = +input[0];
+  let p = 1;
+  
+  let stack = [];
+   for(let i = 0; i<T; i++)
+   {
+        let o=input[p++].trim().split(" ").map(Number);
+        
+       //  switch(o[0])
+       //  {
+       //      case 1: 
+       //          stack.push(o[1]);
+       //          break;
+       //      case 2:
+       //         if(stack.length!=0){
+       //             stack.pop();
+       //         }
+       //         break;
+       //     case 3:
+       //         if(stack.length==0)
+       //         {
+       //             console.log("Empty!");
+       //         }
+       //         else
+       //         {
+       //             let d=stack[stack.length-1];
+       //             console.log(d);
+       //         }
+               
+       //  }
+       console.log(o);
+
+   }
+  
+    
+}
+if (process.env.USER === "") {
+ runProgram(``);
+} else {
+ process.stdin.resume();
+ process.stdin.setEncoding("ascii");
+ let read = "";
+ process.stdin.on("data", function (input) {
+   read += input;
+ });
+ process.stdin.on("end", function () {
+   read = read.replace(/\n$/, "");
+   read = read.replace(/\n$/, "");
+   runProgram(read);
+ });
+ process.on("SIGINT", function () {
+   read = read.replace(/\n$/, "");
+   runProgram(read);
+   process.exit(0);
+ });
+}
+
+/*Reduce String Ended
+Description
+
+Given a string of lowercase characters in range ascii[‘a’..’z’].
+
+You can perform one operation on this string in which you can selects a pair of adjacent lowercase letters that match, and delete them.
+
+For instance, the string aab could be shortened to b in one operation.
+
+Your task is to delete as many characters as possible using this method and print the resulting string. If the final string is empty, print "Empty String" (without quotes).
+
+Please note that characters can be deleted only if they form a pair and are same(i.e from aaa we can only delete 2 a's and will be left with a single a).
+
+I know there exists a simple implemented Stringentation based solution of this question, but please try to come up with an approach that uses stack data structure to solve the purpose
+
+
+Input
+Input Format
+
+First and the only line contains string
+
+Constraints
+
+Length of string < 1000
+
+
+
+
+
+
+Output
+Output Format
+
+If the final string is empty, print Empty String; otherwise, print the final non-reducible string.
+
+
+Sample Input 1 
+
+aaabccddd
+Sample Output 1
+
+abd
+Hint
+
+Sample 1 Explanation
+
+You can perform the following sequence of operations to get the final string:
+
+aaabccddd -> abccddd -> abddd -> abd */
